@@ -68,6 +68,7 @@ export default function Navbar() {
             <Phone className="h-4 w-4 shrink-0" />
             +232 88 96 96 96
           </a>
+
           <a
             href="#contact"
             className="rounded-md bg-gold-500 px-5 py-2.5 text-sm font-semibold text-navy-950 transition-all hover:bg-gold-400 hover:shadow-gold whitespace-nowrap"
@@ -87,20 +88,23 @@ export default function Navbar() {
       </nav>
 
       {open && (
-        <div className="lg:hidden absolute left-0 right-0 top-full min-h-screen bg-navy-950 shadow-2xl z-50">
-          <ul className="flex flex-col gap-1 px-6 py-6 overflow-y-auto max-h-[calc(100vh-68px)]">
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  onClick={() => setOpen(false)}
-                  className="block py-3.5 text-lg font-medium text-white/80 border-b border-navy-700 hover:text-gold-400 transition-colors"
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
-            <li className="pt-6 space-y-3">
+        <div className="lg:hidden fixed inset-0 top-[80px] bg-navy-950 z-[55]">
+          <div className="h-full overflow-y-auto px-6 py-6">
+            <ul className="flex flex-col">
+              {navLinks.map((link) => (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    onClick={() => setOpen(false)}
+                    className="block py-4 text-lg font-medium text-white/80 border-b border-navy-700 hover:text-gold-400 transition-colors"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+
+            <div className="pt-8 space-y-4">
               <a
                 href="tel:+23288969696"
                 className="flex items-center gap-2 text-sm text-white/60"
@@ -108,6 +112,7 @@ export default function Navbar() {
                 <Phone className="h-4 w-4 text-gold-400" />
                 +232 88 96 96 96
               </a>
+
               <a
                 href="#contact"
                 onClick={() => setOpen(false)}
@@ -115,8 +120,8 @@ export default function Navbar() {
               >
                 Contact Us
               </a>
-            </li>
-          </ul>
+            </div>
+          </div>
         </div>
       )}
     </header>
