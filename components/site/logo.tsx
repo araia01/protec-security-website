@@ -10,7 +10,7 @@ export default function Logo({ variant = 'light', className }: LogoProps) {
   return (
     <div className={cn('flex items-center gap-3', className)}>
       <Image
-        src="/images/protec-logo.jpg"
+        src="/images/protec-logo.png"
         alt="Protec Security, Logistics & Services"
         width={140}
         height={48}

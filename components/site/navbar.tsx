@@ -77,7 +77,7 @@ export default function Navbar() {
         </div>
 
         <button
-          className="lg:hidden text-white p-2 -mr-2"
+          className="lg:hidden text-white p-2 -mr-2 relative z-[60]"
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
           aria-expanded={open}
@@ -87,7 +87,7 @@ export default function Navbar() {
       </nav>
 
       {open && (
-        <div className="lg:hidden fixed inset-0 top-[68px] bg-navy-950/98 backdrop-blur-md animate-fade-in z-40">
+        <div className="lg:hidden absolute left-0 right-0 top-full min-h-screen bg-navy-950 shadow-2xl z-50">
           <ul className="flex flex-col gap-1 px-6 py-6 overflow-y-auto max-h-[calc(100vh-68px)]">
             {navLinks.map((link) => (
               <li key={link.href}>
