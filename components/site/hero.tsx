@@ -44,13 +44,14 @@ export default function Hero() {
             }`}
           >
             <Image
-              src={slide.src}
-              alt={slide.alt}
-              fill
-              priority={i === 0}
-              className="object-cover scale-105 animate-ken-burns"
-              sizes="100vw"
-            />
+  src={slide.src}
+  alt={slide.alt}
+  fill
+  priority={i === 0}
+  quality={100}
+  className="object-cover md:scale-105 md:animate-ken-burns"
+  sizes="100vw"
+/>
           </div>
         ))}
         <div className="absolute inset-0 hero-overlay-left" />
