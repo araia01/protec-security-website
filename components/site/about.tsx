@@ -86,7 +86,7 @@ export default function About() {
           <div className="relative">
             <div className="relative rounded-2xl overflow-hidden shadow-navy group">
               <Image
-                src="/slideshow/3.jpg"
+                src="/images/protec-about.png"
                 alt="Protec security personnel"
                 width={800}
                 height={520}
