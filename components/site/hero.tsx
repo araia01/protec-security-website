@@ -1,17 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import Image from 'next/image';
 import { ShieldCheck, ArrowRight, Phone } from 'lucide-react';
-
-const slides = [
-  { src: '/slideshow/1.jpg', alt: 'Protec security and logistics operations' },
-  { src: '/slideshow/2.jpg', alt: 'Protec professional security services' },
-  { src: '/slideshow/3.jpg', alt: 'Protec guarding and protection' },
-  { src: '/slideshow/4.jpg', alt: 'Protec logistics and support' },
-  { src: '/slideshow/5.jpg', alt: 'Protec security personnel on duty' },
-  { src: '/slideshow/6.jpg', alt: 'Protec operations in Sierra Leone' },
-];
 
 const stats = [
   { value: '24/7', label: 'Control Rooms' },
@@ -21,40 +10,93 @@ const stats = [
 ];
 
 export default function Hero() {
-  const [activeSlide, setActiveSlide] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setActiveSlide((prev) => (prev + 1) % slides.length);
-    }, 6000);
-    return () => clearInterval(timer);
-  }, []);
-
   return (
     <section
       id="home"
       className="relative min-h-screen flex items-center overflow-hidden"
     >
-      <div className="absolute inset-0 z-0">
-        {slides.map((slide, i) => (
-          <div
-            key={slide.src}
-            className={`absolute inset-0 transition-opacity duration-1000 ${
-              i === activeSlide ? 'opacity-100' : 'opacity-0'
-            }`}
-          >
-            <Image
-  src={slide.src}
-  alt={slide.alt}
-  fill
-  priority={i === 0}
-  quality={100}
-  className="object-cover md:scale-105 md:animate-ken-burns"
-  sizes="100vw"
-/>
-          </div>
-        ))}
-        <div className="absolute inset-0 hero-overlay-left" />
+      <div
+        className="absolute inset-0 z-0 protec-network-bg overflow-hidden"
+        aria-hidden="true"
+      >
+        <div className="absolute inset-0 protec-network-grid" />
+
+        <div className="absolute -top-20 -right-32 w-[400px] h-[400px] md:w-[700px] md:h-[700px] rounded-full bg-blue-500/10 blur-3xl protec-network-glow" />
+
+        <div className="absolute bottom-0 -left-24 w-[280px] h-[280px] md:w-[500px] md:h-[500px] rounded-full bg-gold-500/10 blur-3xl protec-network-glow" />
+
+        <svg
+          className="absolute inset-0 w-full h-full opacity-70"
+          viewBox="0 0 1000 1000"
+          preserveAspectRatio="xMidYMid slice"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g stroke="#D4A83F" strokeWidth="1" opacity="0.35">
+            <path
+              className="protec-network-line"
+              d="M100 180 L340 260 L580 130 L860 280"
+            />
+            <path
+              className="protec-network-line"
+              d="M80 520 L300 400 L550 560 L900 420"
+            />
+            <path
+              className="protec-network-line"
+              d="M130 830 L380 720 L650 850 L920 680"
+            />
+            <path
+              className="protec-network-line"
+              d="M340 260 L300 400 L380 720"
+            />
+            <path
+              className="protec-network-line"
+              d="M580 130 L550 560 L650 850"
+            />
+            <path
+              className="protec-network-line"
+              d="M860 280 L900 420 L920 680"
+            />
+          </g>
+
+          <g fill="#E5B84B">
+            {[
+              [100, 180],
+              [340, 260],
+              [580, 130],
+              [860, 280],
+              [80, 520],
+              [300, 400],
+              [550, 560],
+              [900, 420],
+              [130, 830],
+              [380, 720],
+              [650, 850],
+              [920, 680],
+            ].map(([cx, cy], index) => (
+              <g key={index}>
+                <circle
+                  cx={cx}
+                  cy={cy}
+                  r="12"
+                  fill="#D4A83F"
+                  opacity="0.12"
+                  className="protec-network-node"
+                  style={{ animationDelay: `${index * 0.3}s` }}
+                />
+                <circle
+                  cx={cx}
+                  cy={cy}
+                  r="3.5"
+                  className="protec-network-node"
+                  style={{ animationDelay: `${index * 0.3}s` }}
+                />
+              </g>
+            ))}
+          </g>
+        </svg>
+
+        <div className="absolute inset-0 bg-gradient-to-r from-navy-950/75 via-navy-950/40 to-transparent" />
       </div>
 
       <div className="absolute top-28 right-4 sm:right-8 z-10 hidden md:flex flex-col items-end gap-3">
@@ -122,21 +164,6 @@ export default function Hero() {
             ))}
           </div>
         </div>
-      </div>
-
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 hidden sm:flex gap-2">
-        {slides.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => setActiveSlide(i)}
-            aria-label={`Go to slide ${i + 1}`}
-            className={`h-1.5 rounded-full transition-all duration-300 ${
-              i === activeSlide
-                ? 'w-8 bg-gold-500'
-                : 'w-3 bg-white/30 hover:bg-white/50'
-            }`}
-          />
-        ))}
       </div>
 
       <div className="absolute bottom-0 left-0 right-0 z-10">
