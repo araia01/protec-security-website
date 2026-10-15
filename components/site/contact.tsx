@@ -59,32 +59,44 @@ export default function Contact() {
   const { ref, isVisible } = useReveal();
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setStatus('loading');
 
     const formData = new FormData(e.currentTarget);
-    const payload = {
-      name: formData.get('name'),
-      email: formData.get('email'),
-      phone: formData.get('phone'),
-      company: formData.get('company'),
-      service: formData.get('service'),
-      message: formData.get('message'),
-    };
 
-    try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      });
-      if (!res.ok) throw new Error('Request failed');
-      setStatus('success');
-      (e.target as HTMLFormElement).reset();
-    } catch {
-      setStatus('error');
-    }
+    const name = String(formData.get('name') || '');
+    const email = String(formData.get('email') || '');
+    const phone = String(formData.get('phone') || '');
+    const company = String(formData.get('company') || '');
+    const service = String(formData.get('service') || '');
+    const message = String(formData.get('message') || '');
+
+    const subject = `Protec Enquiry - ${service}`;
+
+    const body = [
+      'Hello Protec Team,',
+      '',
+      'I would like to submit the following enquiry:',
+      '',
+      `Full Name: ${name}`,
+      `Email Address: ${email}`,
+      `Phone Number: ${phone}`,
+      `Company / Organization: ${company || 'Not provided'}`,
+      `Service Required: ${service}`,
+      '',
+      'Message:',
+      message || 'No additional message provided.',
+      '',
+      'Kind regards,',
+      name,
+    ].join('\n');
+
+    const mailtoLink =
+      `mailto:info@slprotec.com` +
+      `?subject=${encodeURIComponent(subject)}` +
+      `&body=${encodeURIComponent(body)}`;
+
+    window.location.href = mailtoLink;
   };
 
   return (
